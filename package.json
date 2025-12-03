@@ -9,10 +9,10 @@
     "publish",
     "typescript"
   ],
-  "homepage": "https://github.com/kmalakoff/ts-dev-stack",
+  "homepage": "https://github.com/kmalakoff/tsds-version",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/kmalakoff/ts-dev-stack.git"
+    "url": "git+ssh://git@github.com/kmalakoff/tsds-version.git"
   },
   "license": "MIT",
   "author": "Kevin Malakoff <kmalakoff@gmail.com> (https://github.com/kmalakoff)",
