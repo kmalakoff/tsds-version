@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "cross-spawn-cb": "*",
+    "getopts-compat": "*",
     "gh-pages": "*",
     "queue-cb": "*",
     "resolve-bin-sync": "*",
@@ -49,6 +50,7 @@
     "@biomejs/biome": "*",
     "@types/mocha": "*",
     "@types/node": "*",
+    "dotenv": "*",
     "mocha": "*",
     "mocha-compat": "*",
     "module-link-unlink": "*",
