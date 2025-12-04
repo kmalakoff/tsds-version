@@ -50,7 +50,6 @@
   "devDependencies": {
     "@types/mocha": "*",
     "@types/node": "*",
-    "dotenv": "^2.0.0",
     "mocha": "*",
     "mocha-compat": "*",
     "module-link-unlink": "*",

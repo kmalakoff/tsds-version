@@ -6,20 +6,19 @@ import type { CommandCallback, CommandOptions } from 'tsds-lib';
 import docs from 'tsds-typedoc';
 
 export default function command(args: string[], options: CommandOptions, callback: CommandCallback): undefined {
-  const opts = getopts(args, { alias: { 'dry-run': 'd' }, boolean: ['dry-run'] });
+  // Safeguard: block in test environment without --dry-run
+  // Check args directly to avoid any potential errors from getopts in old Node versions
+  const hasDryRun = args.indexOf('--dry-run') >= 0 || args.indexOf('-d') >= 0;
+  if (process.env.NODE_ENV === 'test' && !hasDryRun) {
+    return callback(new Error('Cannot publish docs in test environment without --dry-run'));
+  }
 
   try {
+    const opts = getopts(args, { alias: { 'dry-run': 'd' }, boolean: ['dry-run'] });
     const ghPages = resolveBin('gh-pages');
     const queue = new Queue(1);
 
-    // Docs generation is safe - runs locally
     queue.defer(docs.bind(null, args, options));
-
-    // gh-pages is the ONLY destructive operation
-    // Safeguard: block in test environment without --dry-run
-    if (process.env.NODE_ENV === 'test' && !opts['dry-run']) {
-      return callback(new Error('Cannot publish docs in test environment without --dry-run'));
-    }
 
     if (!opts['dry-run']) {
       queue.defer(spawn.bind(null, ghPages, ['-d', 'docs'], options));
