@@ -2,12 +2,13 @@
 delete process.env.NODE_OPTIONS;
 
 // Load test environment before other imports
-import dotenv from 'dotenv';
 import path from 'path';
+import { loadEnv } from 'tsds-lib';
+import { installGitRepo } from 'tsds-lib-test';
 import url from 'url';
 
 const __dirname = path.dirname(typeof __filename !== 'undefined' ? __filename : url.fileURLToPath(import.meta.url));
-dotenv.config({ path: path.join(__dirname, '..', '..', '.env.test') });
+loadEnv({ path: path.join(__dirname, '..', '..', '.env.test') });
 
 import assert from 'assert';
 import fs from 'fs';
@@ -17,7 +18,6 @@ import osShim from 'os-shim';
 import Queue from 'queue-cb';
 import * as resolve from 'resolve';
 import shortHash from 'short-hash';
-import { installGitRepo } from 'tsds-lib-test';
 
 const tmpdir = os.tmpdir || osShim.tmpdir;
 const resolveSync = (resolve.default ?? resolve).sync;
@@ -65,7 +65,7 @@ function addTests(repo) {
       it('should block gh-pages publish in test environment without --dry-run', (done) => {
         version([], { cwd: dest }, (err): undefined => {
           assert.ok(err);
-          assert.ok(err.message.includes('Cannot publish docs in test environment without --dry-run'));
+          assert.ok(err.message.indexOf('Cannot publish docs in test environment without --dry-run') !== -1);
           done();
         });
       });
@@ -76,7 +76,7 @@ function addTests(repo) {
         version(['--dry-run'], { cwd: dest, stdio: 'inherit' }, (err): undefined => {
           // With --dry-run, the safeguard should NOT trigger
           // The command may fail for other reasons, but not the safeguard
-          if (err && err.message.includes('Cannot publish docs in test environment')) {
+          if (err && err.message.indexOf('Cannot publish docs in test environment') !== -1) {
             done(new Error('Safeguard should not block with --dry-run'));
             return;
           }
