@@ -39,28 +39,25 @@
     "version": "tsds version"
   },
   "dependencies": {
-    "cross-spawn-cb": "*",
-    "getopts-compat": "*",
-    "gh-pages": "*",
-    "queue-cb": "*",
-    "resolve-bin-sync": "*",
-    "tsds-lib": "*",
-    "tsds-typedoc": "*"
+    "cross-spawn-cb": "^3.0.0",
+    "getopts-compat": "^2.2.6",
+    "gh-pages": "^6.3.0",
+    "queue-cb": "^1.0.0",
+    "resolve-bin-sync": "^1.0.12",
+    "tsds-lib": "^1.20.0",
+    "tsds-typedoc": "^1.20.3"
   },
   "devDependencies": {
     "@types/mocha": "*",
     "@types/node": "*",
-    "mocha": "*",
-    "mocha-compat": "*",
-    "module-link-unlink": "*",
+    "module-link-unlink": "^1.0.11",
     "node-version-use": "*",
-    "os-shim": "*",
-    "resolve": "*",
-    "short-hash": "*",
+    "os-shim": "^0.1.0",
+    "resolve": "^1.3.1",
+    "short-hash": "^1.0.0",
     "ts-dev-stack": "*",
-    "ts-swc-loaders": "*",
     "tsds-config": "*",
-    "tsds-lib-test": "*"
+    "tsds-lib-test": "^1.19.7"
   },
   "engines": {
     "node": ">=0.8"
