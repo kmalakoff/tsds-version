@@ -1,4 +1,4 @@
-// remove NODE_OPTIONS from ts-dev-stack
+// remove NODE_OPTIONS to not interfere with tests
 delete process.env.NODE_OPTIONS;
 
 // Load test environment before other imports
@@ -36,7 +36,7 @@ function addTests(repo) {
     const deps = { ...(modulePackage.dependencies || {}), ...(modulePackage.peerDependencies || {}) };
 
     before((cb) => {
-      installGitRepo(repo, dest, (err): undefined => {
+      installGitRepo(repo, dest, (err): void => {
         if (err) {
           cb(err);
           return;
@@ -63,7 +63,7 @@ function addTests(repo) {
 
     describe('safeguard', () => {
       it('should block gh-pages publish in test environment without --dry-run', (done) => {
-        version([], { cwd: dest }, (err): undefined => {
+        version([], { cwd: dest }, (err): void => {
           assert.ok(err);
           assert.ok(err.message.indexOf('Cannot publish docs in test environment without --dry-run') !== -1);
           done();
@@ -73,7 +73,7 @@ function addTests(repo) {
       it('should pass safeguard with --dry-run in test environment', function (done) {
         this.timeout(120000); // typedoc can be slow
 
-        version(['--dry-run'], { cwd: dest, stdio: 'inherit' }, (err): undefined => {
+        version(['--dry-run'], { cwd: dest, stdio: 'inherit' }, (err): void => {
           // With --dry-run, the safeguard should NOT trigger
           // The command may fail for other reasons, but not the safeguard
           if (err && err.message.indexOf('Cannot publish docs in test environment') !== -1) {

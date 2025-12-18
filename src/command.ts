@@ -5,7 +5,7 @@ import resolveBin from 'resolve-bin-sync';
 import type { CommandCallback, CommandOptions } from 'tsds-lib';
 import docs from 'tsds-typedoc';
 
-export default function command(args: string[], options: CommandOptions, callback: CommandCallback): undefined {
+export default function command(args: string[], options: CommandOptions, callback: CommandCallback): void {
   // Safeguard: block in test environment without --dry-run
   // Check args directly to avoid any potential errors from getopts in old Node versions
   const hasDryRun = args.indexOf('--dry-run') >= 0 || args.indexOf('-d') >= 0;
