@@ -28,6 +28,6 @@ export default function command(args: string[], options: CommandOptions, callbac
 
     queue.await(callback);
   } catch (err) {
-    return callback(err);
+    return callback(err instanceof Error ? err : new Error(String(err)));
   }
 }
