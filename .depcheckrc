@@ -1,1 +1,1 @@
-ignores: ["node-version-use", "ts-dev-stack", "tsds-version", "gh-pages", "resolve-bin-sync", "module-link-unlink", "short-hash", "tsds-lib-test"]
+ignores: ["tsds-version", "node-version-use", "ts-dev-stack", "gh-pages", "resolve-bin-sync", "module-link-unlink", "short-hash", "tsds-lib-test"]
