@@ -9,7 +9,18 @@
 <div class="tsd-page-title">
 <h1>tsds-version</h1></div>
 <div class="tsd-panel tsd-typography"><h1 id="tsds-version" class="tsd-anchor-link">tsds-version<a href="#tsds-version" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1>
-<p>Post publish actions.</p>
+<p>Internal <code>ts-dev-stack</code> command that generates API documentation and publishes
+the <code>docs</code> directory to GitHub Pages. It is normally run from a package's npm
+<code>version</code> lifecycle.</p>
+<p>Use the parent CLI from a project configured for ts-dev-stack:</p>
+<pre><code class="bash"><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-2">install</span><span class="hl-1"> </span><span class="hl-3">--save-dev</span><span class="hl-1"> </span><span class="hl-2">ts-dev-stack</span><br/><span class="hl-0">tsds</span><span class="hl-1"> </span><span class="hl-2">version</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Use <code>tsds version --dry-run</code> to check the command without generating or
+publishing documentation.
+This package is not a standalone end-user command; see the
+<a href="https://www.npmjs.com/package/ts-dev-stack">ts-dev-stack guide</a> for project
+setup.</p>
 </div></div>
 <div class="col-sidebar">
 <div class="page-menu">
